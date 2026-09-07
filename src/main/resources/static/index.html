@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biglietteria On Line</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Biglietteria On Line</h1>
+            <nav>
+                <button onclick="showSection('access-section')">Accesso Cliente</button>
+                <button onclick="showSection('shows-section')">Teatri e Spettacoli</button>
+                <button onclick="showSection('booking-section')">Prenotazione Biglietti</button>
+                <button onclick="showSection('reservations-section')">Visualizza Prenotazioni</button>
+            </nav>
+        </header>
+
+        <!-- Box Messaggi di Sistema -->
+        <div id="alert-box" class="alert hidden"></div>
+
+        <!-- 1. GESTIONE ACCESSO CLIENTE -->
+        <section id="access-section" class="card">
+            <h2>Gestione Accesso Cliente</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-cod-cliente">Codice Cliente:</label>
+                    <input type="number" id="login-cod-cliente" required placeholder="Es. 1">
+                </div>
+                <button type="submit" class="btn-primary">Verifica ed Accedi</button>
+            </form>
+            <div id="user-info" class="user-info hidden"></div>
+        </section>
+
+        <!-- 2. GESTIONE SPETTACOLI -->
+        <section id="shows-section" class="card hidden">
+            <h2>Gestione Spettacoli e Teatri</h2>
+            <button onclick="loadTeatriSpettacoli()" class="btn-secondary">Aggiorna Elenco</button>
+            <div id="teatri-container" class="grid-container"></div>
+        </section>
+
+        <!-- 3. INSERIMENTO PRENOTAZIONI -->
+        <section id="booking-section" class="card hidden">
+            <h2>Inserimento Prenotazione Biglietti</h2>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="codCliente">Codice Cliente:</label>
+                    <input type="number" id="codCliente" required placeholder="Es. 1">
+                </div>
+                <div class="form-group">
+                    <label for="codreplica">Codice Replica:</label>
+                    <input type="text" id="codreplica" maxlength="4" required placeholder="Es. R001">
+                </div>
+                <div class="form-group">
+                    <label for="tipoPagamento">Tipo di Pagamento:</label>
+                    <select id="tipoPagamento" required>
+                        <option value="Carta di Credito">Carta di Credito</option>
+                        <option value="Bonifico">Bonifico</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantita">Quantità Biglietti:</label>
+                    <input type="number" id="quantita" min="1" value="1" required>
+                </div>
+                <button type="submit" class="btn-primary">Conferma Prenotazione</button>
+            </form>
+        </section>
+
+        <!-- 4. VISUALIZZAZIONE PRENOTAZIONI -->
+        <section id="reservations-section" class="card hidden">
+            <h2>Visualizzazione Prenotazioni Effettuate</h2>
+            <button onclick="loadReservations()" class="btn-secondary">Aggiorna Tabella</button>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Cod. Operazione</th>
+                        <th>Cliente</th>
+                        <th>Teatro</th>
+                        <th>Spettacolo / Autore</th>
+                        <th>Data Replica</th>
+                        <th>Ora</th>
+                        <th>Quantità</th>
+                        <th>Tipo Pagamento</th>
+                        <th>Data Registrazione</th>
+                    </tr>
+                </thead>
+                <tbody id="reservations-table-body">
+                    <!-- Dati caricati dinamicamente -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="App.js"></script>
+</body>
+</html>
+
